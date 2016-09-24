@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	private string color = "w";
+	public string color = "w";
 	SpriteRenderer sr;
 	Rigidbody2D rb;
 
@@ -47,15 +47,21 @@ public class PlayerController : MonoBehaviour {
 			sr.color = GameManager.cBlack;
 			gameObject.layer = 9;
 			color = "b";
-			groundMask = groundMaskB;
 		} else if (color == "b") {
 			sr.color = GameManager.cWhite;
 			gameObject.layer = 8;
 			color = "w";
-			groundMask = groundMaskW;
 		}
+		ReassignGrounds ();
+		//GameManager.FlipWorld ();
+	}
 
-		GameManager.FlipWorld ();
+	void ReassignGrounds()
+	{
+		if (color == "b")
+			groundMask = groundMaskW;
+		else if (color == "w")
+			groundMask = groundMaskB;
 	}
 
 	void OnDrawGizmos()
