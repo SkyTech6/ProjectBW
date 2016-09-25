@@ -25,18 +25,18 @@ public class PlayerController : MonoBehaviour {
 		groundMask = groundMaskB;
 	}
 	
-	void FixedUpdate () 
+	void Update () 
 	{
 		Vector2 moveDir = new Vector2 (Input.GetAxisRaw ("Horizontal") * moveSpeed, rb.velocity.y);
 		rb.velocity = moveDir;
 
 		isGrounded = Physics2D.OverlapCircle (groundCheck.position, radius, groundMask);
 
-		if (Input.GetKeyDown (KeyCode.W)  && isGrounded) {
+		if (Input.GetKeyDown (KeyCode.W)  && isGrounded || Input.GetKeyDown (KeyCode.Space) && isGrounded) {
 			rb.AddForce (new Vector2 (0, jumpHeight));
 		}
 
-		if (Input.GetMouseButtonDown (0))
+		if (Input.GetMouseButtonDown (0) || Input.GetKeyDown(KeyCode.E))
 			flipColor ();
 	}
 
