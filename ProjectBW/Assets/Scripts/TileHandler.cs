@@ -26,7 +26,14 @@ public class TileHandler : MonoBehaviour {
 			sr.color = GameManager.cBlack;
 			gameObject.layer = 11;
 			currentColor = "b";
+		} else {
 		}
+	}
+
+	void OnTriggerEnter2D()
+	{
+		if(currentColor == "g")
+			pc.flipColor ();
 	}
 
 	void AssignInitialColor()
@@ -37,6 +44,9 @@ public class TileHandler : MonoBehaviour {
 		} else if (currentColor == "w") {
 			sr.color = GameManager.cWhite;
 			gameObject.layer = 10;
+		} else if (currentColor == "g") {
+			sr.color = Color.gray;
+			gameObject.layer = 0;
 		}
 	}
 }

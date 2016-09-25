@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask groundMask;
 
 	bool isGrounded;
+	public bool grayMode = false;
 
 	void Start () 
 	{
@@ -36,11 +37,13 @@ public class PlayerController : MonoBehaviour {
 			rb.AddForce (new Vector2 (0, jumpHeight));
 		}
 
-		if (Input.GetMouseButtonDown (0) || Input.GetKeyDown(KeyCode.E))
-			flipColor ();
+		if (!grayMode) {
+			if (Input.GetMouseButtonDown (0) || Input.GetKeyDown (KeyCode.E))
+				flipColor ();
+		}
 	}
 
-	void flipColor()
+	public void flipColor()
 
 	{
 		if (color == "w") {
