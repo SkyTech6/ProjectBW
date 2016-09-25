@@ -16,6 +16,20 @@ public class TileHandler : MonoBehaviour {
 		AssignInitialColor ();
 	}
 
+	public void FlipColor()
+	{
+		if (currentColor == "b") {
+			sr.color = GameManager.cWhite;
+			gameObject.layer = 10;
+			currentColor = "w";
+		} else if (currentColor == "w") {
+			sr.color = GameManager.cBlack;
+			gameObject.layer = 11;
+			currentColor = "b";
+		} else {
+		}
+	}
+
 	void OnTriggerExit2D()
 	{
 		if (currentColor == "b" && pc.color == "w") {
