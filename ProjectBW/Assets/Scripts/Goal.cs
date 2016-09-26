@@ -7,7 +7,7 @@ public class Goal : MonoBehaviour {
 	SpriteRenderer sr;
 	PlayerController pc;
 
-	public Object sceneToLoad;
+	public string sceneToLoad;
 
 	public string playerColorMatch = "b";
 
@@ -39,6 +39,6 @@ public class Goal : MonoBehaviour {
 	IEnumerator NextLevel()
 	{
 		yield return new WaitForSeconds (1f);
-		SceneManager.LoadScene(sceneToLoad.name);
+		SceneManager.LoadScene(sceneToLoad);
 	}
 }

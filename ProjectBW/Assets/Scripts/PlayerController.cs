@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		rb = GetComponent<Rigidbody2D> ();
 		groundMask = groundMaskB;
+
+		InitialColor ();
 	}
 	
 	void Update () 
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 
 		isGrounded = Physics2D.OverlapCircle (groundCheck.position, radius, groundMask);
 
-		if (Input.GetKeyDown (KeyCode.W)  && isGrounded || Input.GetKeyDown (KeyCode.Space) && isGrounded) {
+		if (Input.GetKeyDown (KeyCode.W)  && isGrounded) {
 			rb.AddForce (new Vector2 (0, jumpHeight));
 		}
 
@@ -41,6 +43,19 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetMouseButtonDown (0) || Input.GetKeyDown (KeyCode.E))
 				flipColor ();
 		}
+	}
+
+	void InitialColor()
+	{
+		if (color == "b") {
+			sr.color = GameManager.cBlack;
+			gameObject.layer = 9;
+		} else if (color == "w") {
+			sr.color = GameManager.cWhite;
+			gameObject.layer = 8;
+		}
+
+		ReassignGrounds ();
 	}
 
 	public void flipColor()
@@ -65,11 +80,5 @@ public class PlayerController : MonoBehaviour {
 			groundMask = groundMaskW;
 		else if (color == "w")
 			groundMask = groundMaskB;
-	}
-
-	void OnDrawGizmos()
-	{
-		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere (groundCheck.position, radius);
 	}
 }
